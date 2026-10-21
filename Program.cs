@@ -4,6 +4,7 @@
 //Se kaj kagen
 //Cool
 
+using System.Diagnostics;
 using System.Timers;
 using System.Xml.Linq;
 
@@ -26,8 +27,7 @@ game.Start(playerName);
 class Game
 {
     private Random random = new Random();
-
-    private int veg1Posx;
+    private Stopwatch stopwatch = new Stopwatch();
     public int Total;
     private int[] x = new int[] { 10 };
     private int[] y = new int[] { 10 };
@@ -42,18 +42,23 @@ class Game
 
     public void Start(string name)
     {
-        MakePerson(name);
+        MakePerson();
         CreateVeg();
-        MovePerson();
+        GameLoop();
+
     }
 
-    public void Loop()
+    public void GameLoop() //Her køre vores MovePerson og PickVeg konstant
     {
-        MovePerson();
-        PickVeg();
+        while (true) 
+        {
+            MovePerson();
+            PickVeg();
+            MoveVeg();
+        }
     }
 
-    public void MakePerson(string name)
+    public void MakePerson()
     {
         Console.Clear();
         Console.SetCursorPosition(x[0], y[0]);
@@ -64,10 +69,11 @@ class Game
         veg1 = new Vegetable();
 
         veg1.Name = "Carrot";
-        veg1.Time = 3;
+        veg1.Time = 5000;
         veg1.x = 8;
         veg1.y = 8;
         DrawVeg();
+        stopwatch.Start();
     }
 
     public void DrawVeg()
@@ -105,10 +111,26 @@ class Game
         }
     }
 
+    public void MoveVeg()
+    {
+        if(stopwatch.ElapsedMilliseconds >= veg1.Time)
+        {
+            veg1.x = random.Next(1, 31);
+            veg1.y = random.Next(1, 21);
+
+            while (veg1.x == x[0] && veg1.y == y[0])
+            {
+                veg1.x = random.Next(1, 31);
+                veg1.y = random.Next(1, 21);
+            }
+            stopwatch.Restart();
+            DrawVeg();
+            MakePerson();
+        }
+    }
+
     public void MovePerson()
     {
-        while (true)
-        {
             if (Console.KeyAvailable)
             {
                 var key = Console.ReadKey(true);
@@ -118,10 +140,6 @@ class Game
                 if (key.Key == ConsoleKey.LeftArrow) x[0]--;
                 if (key.Key == ConsoleKey.RightArrow) x[0]++;
 
-                Console.Clear();
-                DrawVeg();
-                Console.SetCursorPosition(x[0], y[0]);
-                Console.Write("O");
                 if (x[0] < 1)
                 {
                     x[0] = 1;
@@ -138,8 +156,10 @@ class Game
                 {
                     y[0] = 20;
                 }
+
+            DrawVeg();
+            MakePerson();
             }
-        }
     }
    
 }

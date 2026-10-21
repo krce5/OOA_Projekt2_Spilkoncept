@@ -12,17 +12,14 @@ Console.WriteLine("Welcome to the Bondemand Larsens Vegetable field!");
 Console.WriteLine("You have been hired to protect the veggies. ");
 Console.WriteLine("You are supposed to harvest the veggetables and");
 Console.WriteLine("..scare the rabbits away!");
-
 Console.WriteLine("Use the arrow keys to move around and walk in the vegetable patch to harvest them.");
 Console.WriteLine("Press R to scare the rabbit.");
-
 Console.WriteLine("Write your name below and press ENTER to start the game.");
 
 string playerName = Console.ReadLine();
 
 Game game = new Game();
 game.Start(playerName);
-
 
 class Game
 {
@@ -31,21 +28,13 @@ class Game
     public int Total;
     private int[] x = new int[] { 10 };
     private int[] y = new int[] { 10 };
-
-    //private int[] Vegx = new int[] { 8 };
-    //private int[] Vegy = new int[] { 8 };
-
     private Vegetable veg1;
-
-
-
 
     public void Start(string name)
     {
         MakePerson();
         CreateVeg();
         GameLoop();
-
     }
 
     public void GameLoop() //Her køre vores MovePerson og PickVeg konstant
@@ -63,7 +52,15 @@ class Game
         Console.Clear();
         Console.SetCursorPosition(x[0], y[0]);
         Console.Write("O");
+        DrawPoints();
     }
+
+    public void DrawPoints()
+    {
+        Console.SetCursorPosition(0, 22);
+        Console.WriteLine("Points: " + Total);
+    }
+
     public void CreateVeg()
     {
         veg1 = new Vegetable();
@@ -72,6 +69,8 @@ class Game
         veg1.Time = 5000;
         veg1.x = 8;
         veg1.y = 8;
+        veg1.Point = 1;
+
         DrawVeg();
         stopwatch.Start();
     }
@@ -82,23 +81,11 @@ class Game
         Console.Write("C");
     }
 
-    //public void MoveVeg()
-    //{
-    //    veg1.x = random.Next(1, 31);
-    //    veg1.y = random.Next(1, 21);
-
-    //    while (veg1.x == x[0] && veg1.y == y[0])
-    //    {
-    //        veg1.x = random.Next(1, 31);
-    //        veg1.y = random.Next(1, 21);
-    //    }
-    //    DrawVeg();
-    //}
-
     public void PickVeg()
     {
         if (x[0] == veg1.x && y[0] == veg1.y)
         {
+            Total = Total + veg1.Point;
             veg1.x = random.Next(1, 31);
             veg1.y = random.Next(1, 21);
 
@@ -107,6 +94,8 @@ class Game
                 veg1.x = random.Next(1, 31);
                 veg1.y = random.Next(1, 21);
             }
+            stopwatch.Restart();
+            MakePerson();
             DrawVeg();
         }
     }
@@ -124,8 +113,8 @@ class Game
                 veg1.y = random.Next(1, 21);
             }
             stopwatch.Restart();
-            DrawVeg();
             MakePerson();
+            DrawVeg();
         }
     }
 
@@ -156,12 +145,10 @@ class Game
                 {
                     y[0] = 20;
                 }
-
-            DrawVeg();
             MakePerson();
-            }
-    }
-   
+            DrawVeg();
+        }
+    } 
 }
 
 class Person
@@ -180,5 +167,4 @@ class Vegetable
     public int Point;
     public int Time;
     public Game MyGame2;
-
 }

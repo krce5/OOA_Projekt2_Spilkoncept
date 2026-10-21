@@ -4,6 +4,9 @@
 //Se kaj kagen
 //Cool
 
+using System.Timers;
+using System.Xml.Linq;
+
 Console.WriteLine("Welcome to the Bondemand Larsens Vegetable field!");
 Console.WriteLine("You have been hired to protect the veggies. ");
 Console.WriteLine("You are supposed to harvest the veggetables and");
@@ -22,13 +25,20 @@ game.Start(playerName);
 
 class Game
 {
+    public int Total;
     private int[] x = new int[] { 10 };
     private int[] y = new int[] { 10 };
+
+    //private int[] Vegx = new int[] { 8 };
+    //private int[] Vegy = new int[] { 8 };
+
+
 
     public void Start(string name)
     {
         MakePerson(name);
         MovePerson();
+        CreateVeg();
     }
 
     public void MakePerson(string name)
@@ -74,6 +84,18 @@ class Game
             }
         }
     }
+    public void CreateVeg()
+    {
+        Vegetable veg1 = new Vegetable();
+
+        veg1.Name = "Carrot";
+        veg1.Time = 3;
+        
+
+        Console.Clear();
+        Console.SetCursorPosition(8, 8);
+        Console.Write("C");
+    }
 }
 
 class Person
@@ -82,4 +104,15 @@ class Person
     public int x;
     public int y;
     public Game MyGame;
+}
+
+class Vegetable
+{
+    public int x;
+    public int y;
+    public string Name;
+    public int Point;
+    public int Time;
+    public Game MyGame2;
+
 }

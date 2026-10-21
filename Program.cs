@@ -32,13 +32,15 @@ class Game
     //private int[] Vegx = new int[] { 8 };
     //private int[] Vegy = new int[] { 8 };
 
+    private Vegetable veg1;
+
 
 
     public void Start(string name)
     {
         MakePerson(name);
-        MovePerson();
         CreateVeg();
+        MovePerson();
     }
 
     public void MakePerson(string name)
@@ -46,9 +48,23 @@ class Game
         Console.Clear();
         Console.SetCursorPosition(x[0], y[0]);
         Console.Write("O");
+    }
+    public void CreateVeg()
+    {
+        Vegetable veg1 = new Vegetable();
 
+        veg1.Name = "Carrot";
+        veg1.Time = 3;
+        veg1.x = 8;
+        veg1.y = 8;
+        DrawVeg();
     }
 
+    public void DrawVeg()
+    {
+        Console.SetCursorPosition(veg1.x,veg1.y);
+        Console.Write("C");
+    }
     public void MovePerson()
     {
         while (true)
@@ -63,6 +79,7 @@ class Game
                 if (key.Key == ConsoleKey.RightArrow) x[0]++;
 
                 Console.Clear();
+                DrawVeg();
                 Console.SetCursorPosition(x[0], y[0]);
                 Console.Write("O");
                 if (x[0] < 1)
@@ -84,18 +101,7 @@ class Game
             }
         }
     }
-    public void CreateVeg()
-    {
-        Vegetable veg1 = new Vegetable();
-
-        veg1.Name = "Carrot";
-        veg1.Time = 3;
-        
-
-        Console.Clear();
-        Console.SetCursorPosition(8, 8);
-        Console.Write("C");
-    }
+   
 }
 
 class Person

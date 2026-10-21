@@ -10,10 +10,12 @@ UC1: Klasse diagram
 
 UC2: Klasse diagram                                                                                                                                                                  
 
-<img width="2048" height="1024" alt="klasse diagram UC2" src="https://github.com/user-attachments/assets/04479800-e541-454d-89ff-5abb95dad180" />
+<img width="2048" height="1152" alt="klasse diagram UC2 V2" src="https://github.com/user-attachments/assets/9b3f175a-017b-45fd-8220-2cf9abc165c1" />
 
 
 UC2: Opret vegetable og pointsystem 
 
 
-<img width="2048" height="1152" alt="UC2 V2" src="https://github.com/user-attachments/assets/0709e19f-f422-47a3-a4ee-01e804448f45" />
+
+<img width="2048" height="1152" alt="UC2 V3" src="https://github.com/user-attachments/assets/60fffc2a-8fb9-44fc-8f62-e68d5dabb63b" />
+

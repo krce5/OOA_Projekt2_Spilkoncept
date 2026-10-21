@@ -25,6 +25,9 @@ game.Start(playerName);
 
 class Game
 {
+    private Random random = new Random();
+
+    private int veg1Posx;
     public int Total;
     private int[] x = new int[] { 10 };
     private int[] y = new int[] { 10 };
@@ -36,11 +39,18 @@ class Game
 
 
 
+
     public void Start(string name)
     {
         MakePerson(name);
         CreateVeg();
         MovePerson();
+    }
+
+    public void Loop()
+    {
+        MovePerson();
+        PickVeg();
     }
 
     public void MakePerson(string name)
@@ -51,7 +61,7 @@ class Game
     }
     public void CreateVeg()
     {
-        Vegetable veg1 = new Vegetable();
+        veg1 = new Vegetable();
 
         veg1.Name = "Carrot";
         veg1.Time = 3;
@@ -65,6 +75,36 @@ class Game
         Console.SetCursorPosition(veg1.x,veg1.y);
         Console.Write("C");
     }
+
+    //public void MoveVeg()
+    //{
+    //    veg1.x = random.Next(1, 31);
+    //    veg1.y = random.Next(1, 21);
+
+    //    while (veg1.x == x[0] && veg1.y == y[0])
+    //    {
+    //        veg1.x = random.Next(1, 31);
+    //        veg1.y = random.Next(1, 21);
+    //    }
+    //    DrawVeg();
+    //}
+
+    public void PickVeg()
+    {
+        if (x[0] == veg1.x && y[0] == veg1.y)
+        {
+            veg1.x = random.Next(1, 31);
+            veg1.y = random.Next(1, 21);
+
+            while (veg1.x == x[0] && veg1.y == y[0])
+            {
+                veg1.x = random.Next(1, 31);
+                veg1.y = random.Next(1, 21);
+            }
+            DrawVeg();
+        }
+    }
+
     public void MovePerson()
     {
         while (true)

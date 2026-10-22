@@ -19,3 +19,12 @@ UC2: Opret vegetable og pointsystem
 
 <img width="2048" height="1152" alt="UC2 V3" src="https://github.com/user-attachments/assets/60fffc2a-8fb9-44fc-8f62-e68d5dabb63b" />
 
+
+UC3: Opret fjender
+
+<img width="2048" height="1152" alt="UC3 V2" src="https://github.com/user-attachments/assets/14bfa884-e18e-4ea5-a13d-420c12289c43" />
+
+
+UC3: Klasse diagram
+
+<img width="2048" height="1152" alt="klasse diagram UC3" src="https://github.com/user-attachments/assets/7db6d1f9-fe7a-4e79-8e60-1d8d0c0f5c6e" />

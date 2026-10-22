@@ -92,7 +92,10 @@ class Game
         foreach (Vegetable veg in vegetables)
         {
             Console.SetCursorPosition(veg.x, veg.y);
+            ConsoleColor previousColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write(veg.Symbol);
+            Console.ForegroundColor = previousColor;
         }
     }
 
@@ -175,7 +178,10 @@ class Game
             if (enemy.Visible)
             {
                 Console.SetCursorPosition(enemy.x, enemy.y);
+                ConsoleColor previousColor = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write(enemy.Symbol);
+                Console.ForegroundColor = previousColor;
             }
         }
     }
